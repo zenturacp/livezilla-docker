@@ -90,6 +90,11 @@ a2enmod rewrite > /dev/null
 /usr/local/bin/livezilla-update-check.sh
 VERSION=$(livezilla-version)
 
+if [ "$VERSION" = "null" ]; then
+ echo "ERROR - Live!Zilla did not install correctly - check logs"
+ exit 1
+fi
+
 echo "===== Starting $APPLICATION ====="
 echo "Servername  : $SERVERNAME"
 echo "Version     : $VERSION"
