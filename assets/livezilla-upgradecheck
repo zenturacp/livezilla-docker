@@ -1,0 +1,27 @@
+#!/usr/local/bin/php
+<?php
+
+define("LIVEZILLA_PATH","/var/www/html");
+
+if (file_exists("/var/www/html/_definitions/definitions.inc.php")) {
+    require "/var/www/html/_definitions/definitions.inc.php";
+} else {
+    define("VERSION", 0);
+}
+
+$installed_version = str_replace(".", "", constant("VERSION"));
+$wanted_version = str_replace(".", "", getenv("LIVEZILLA_VERSION"));
+
+if ( $installed_version == $wanted_version ) {
+    echo "current";
+    die;
+} elseif ( $installed_version == 0 ) {
+    echo "notinstalled";
+    die;
+} elseif ( $installed_version < $wanted_version ) {
+    echo "upgrade";
+    die;
+} elseif ( $installed_version > $wanted_version ) {
+    echo "newer";
+    die;
+}
