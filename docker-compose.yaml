@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  mysql:
+    image: mariadb:latest
+    container_name: mysql
+    restart: always
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - livezilla
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+
+  livezilla:
+    image: zenturacp/livezilla-docker:latest
+    container_name: livezilla
+    restart: always
+    volumes:
+      - livezilla-data:/var/www/html
+    networks:
+      - livezilla
+    ports:
+      - "80:80"
+    depends_on:
+      - "mysql"
+
+networks:
+  livezilla:
+
+volumes:
+  db-data:
+  livezilla-data:
