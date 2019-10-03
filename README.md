@@ -59,3 +59,9 @@ Please change the MySQL root password before deployment
 ## Roadmap
 
 * Build in CronJob
+
+## Special thanks
+
+A very special thanks to Live!Zilla for making a really cool and very versatile product!
+
+For info please visit their website at [www.livezilla.net](https://www.livezilla.net)
