@@ -1,7 +1,7 @@
 FROM php:7.3.10-apache-stretch
 
 LABEL maintainer="Christian Pedersen <christian.pedersen@zentura.dk>"
-LABEL application="LiveZilla - Docker"
+LABEL application="Unofficial Live!Zilla - Docker"
 
 ENV PACKAGE_URL="https://www.livezilla.net/downloads/pubfiles/livezilla_server_8.0.1.2.zip"
 ENV LIVEZILLA_VERSION="8.0.1.2"
