@@ -69,3 +69,12 @@ Please change the MySQL root password before deployment
 A very special thanks to Live!Zilla for making a really cool and very versatile product!
 
 For info please visit their website at [www.livezilla.net](https://www.livezilla.net)
+
+## Change Log
+This is all changes from the official [Changelog](https://www.livezilla.net/changelog/en/)
+
+### 8.0.1.2 (2019-07-23)
+* Geo Tracking Database update
+* New Group / Visitor filters can't be created
+* Ticket file attachment no clickable
+* XSS vulnerability (FG-VD-19-085)
