@@ -37,24 +37,21 @@ TLS_ENABLED=1
 cat > /etc/apache2/sites-available/livezilla-ssl.conf << EOF
 <IfModule mod_ssl.c>
         <VirtualHost *:443>
-            	DocumentRoot /var/www/html
-            	
+                DocumentRoot /var/www/html
                 ErrorLog \${APACHE_LOG_DIR}/error.log
-	            CustomLog \${APACHE_LOG_DIR}/access.log combined
-
+                CustomLog \${APACHE_LOG_DIR}/access.log combined
                 SSLEngine on
                 SSLCertificateFile $TLS_CERT
                 SSLCertificateKeyFile $TLS_KEY
-
-                <IfModule mod_rewrite.c>
-                RewriteEngine On
-                RewriteRule ^/?knowledge-base/$ knowledgebase.php?depth=1 [QSA,L]
-                RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$1&depth=2 [QSA,L]
-                RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$2&depth=3 [QSA,L]
-                RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$3&depth=4 [QSA,L]
-                RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$4&depth=5 [QSA,L]
-                </IfModule>                
-
+                <Directory /var/www/html>
+                    RewriteEngine On
+                    RewriteBase /
+                    RewriteRule ^/?knowledge-base/\$ knowledgebase.php?depth=1 [QSA,L]
+                    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$1&depth=2 [QSA,L]
+                    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$2&depth=3 [QSA,L]
+                    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$3&depth=4 [QSA,L]
+                    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$4&depth=5 [QSA,L]
+                </Directory>         
         </VirtualHost>
 </IfModule>
 EOF
@@ -66,19 +63,17 @@ fi
 cat > /etc/apache2/sites-available/livezilla.conf << EOF
 <VirtualHost *:80>
     DocumentRoot /var/www/html
-
-	ErrorLog \${APACHE_LOG_DIR}/error.log
-	CustomLog \${APACHE_LOG_DIR}/access.log combined
-
-    <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^/?knowledge-base/$ knowledgebase.php?depth=1 [QSA,L]
-    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$1&depth=2 [QSA,L]
-    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$2&depth=3 [QSA,L]
-    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$3&depth=4 [QSA,L]
-    RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/$ knowledgebase.php?article=$4&depth=5 [QSA,L]
-    </IfModule>                
-
+    ErrorLog \${APACHE_LOG_DIR}/error.log
+    CustomLog \${APACHE_LOG_DIR}/access.log combined
+    <Directory /var/www/html>
+        RewriteEngine On
+        RewriteBase /
+        RewriteRule ^/?knowledge-base/\$ knowledgebase.php?depth=1 [QSA,L]
+        RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$1&depth=2 [QSA,L]
+        RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$2&depth=3 [QSA,L]
+        RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$3&depth=4 [QSA,L]
+        RewriteRule ^/?knowledge-base/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/([a-zA-Z0-9_\-]+)/\$ knowledgebase.php?article=\$4&depth=5 [QSA,L]
+    </Directory>
 </VirtualHost>
 EOF
 a2ensite livezilla > /dev/null
