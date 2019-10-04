@@ -13,7 +13,9 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   livezilla:
-    image: livezilla:8.0.1.3
+    image: livezilla
+    build:
+      context: .
     container_name: livezilla
     restart: always
     volumes:
