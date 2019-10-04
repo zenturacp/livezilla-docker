@@ -13,7 +13,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   livezilla:
-    image: zenturacp/livezilla-docker:latest
+    image: livezilla:8.0.1.3
     container_name: livezilla
     restart: always
     volumes:
