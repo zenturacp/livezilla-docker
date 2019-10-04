@@ -8,6 +8,10 @@ To fint the actual project you can visit the [Live!Zilla website](https://www.li
 
 Please don't use this in production - since its only for testing at the moment.
 
+## Version
+
+This docker image will start with version 8.0.1.2 of Live!Zilla
+
 ## Supported features
 
 * Base installation - and auto fetch of current / specific version
