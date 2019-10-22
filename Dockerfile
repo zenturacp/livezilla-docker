@@ -5,8 +5,8 @@ LABEL application="Unofficial Live!Zilla - Docker"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV PACKAGE_URL="https://www.livezilla.net/downloads/pubfiles/livezilla_server_8.0.1.3.zip"
-ENV LIVEZILLA_VERSION="8.0.1.3"
+ENV PACKAGE_URL="https://www.livezilla.net/downloads/pubfiles/livezilla_server_8.0.1.4.zip"
+ENV LIVEZILLA_VERSION="8.0.1.4"
 
 RUN apt-get update && apt-get --no-install-recommends install -y \
         unzip \
@@ -26,6 +26,8 @@ COPY assets/. /usr/local/bin/
 RUN chmod +x /usr/local/bin/livezilla-*
 
 EXPOSE 80 443
+
+VOLUME [ "/var/www/html" ]
 
 ENTRYPOINT [ "livezilla-docker-entrypoint.sh" ]
 

@@ -8,7 +8,7 @@ To fint the actual project you can visit the [Live!Zilla website](https://www.li
 Please don't use this in production - since its only for testing at the moment.
 
 ## Version
-This docker image will start with version 8.0.1.3 of Live!Zilla
+This docker image will start with version 8.0.1.4 of Live!Zilla
 
 ## Supported features
 * Base installation - and auto fetch of current / specific version
@@ -63,6 +63,10 @@ For info please visit their website at [www.livezilla.net](https://www.livezilla
 
 ## Change Log
 This is all changes from the official [Changelog](https://www.livezilla.net/changelog/en/)
+
+### 8.0.1.4 (2019-10-18)
+* Geo Tracking Database update
+* WidgetAPI.OptInCookies function will remove lz_no_cookie
 
 ### 8.0.1.3 (2019-08-26)
 * Geo Tracking Database update
