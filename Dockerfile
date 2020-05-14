@@ -21,6 +21,9 @@ RUN apt-get update && apt-get --no-install-recommends install -y \
     docker-php-ext-install gd mysqli && \
     mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = '10M'/' "$PHP_INI_DIR/php.ini"
+RUN sed -i 's/post_max_size = .*/post_max_size = '10M'/' "$PHP_INI_DIR/php.ini"
+
 COPY assets/. /usr/local/bin/
 
 RUN chmod +x /usr/local/bin/livezilla-*
