@@ -12,13 +12,15 @@ RUN apt-get update && apt-get --no-install-recommends install -y \
         unzip \
         libfreetype6-dev \
         libjpeg-dev \
+	libldap2-dev \
         libpng-dev && \
     docker-php-ext-configure gd \
         --with-freetype-dir=/usr/include/freetype2 \
         --with-png-dir=/usr/include \
         --with-jpeg-dir=/usr/include && \
     rm -rf /var/lib/apt/lists/* && \
-    docker-php-ext-install gd mysqli && \
+	docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
+    docker-php-ext-install gd mysqli ldap && \
     mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = '10M'/' "$PHP_INI_DIR/php.ini"
