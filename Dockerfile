@@ -5,8 +5,8 @@ LABEL application="Unofficial Live!Zilla - Docker"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ENV PACKAGE_URL="https://www.livezilla.net/downloads/pubfiles/livezilla_server_8.0.1.4.zip"
-ENV LIVEZILLA_VERSION="8.0.1.4"
+ENV LIVEZILLA_VERSION="8.0.1.9"
+ENV PACKAGE_URL="https://www.livezilla.net/downloads/pubfiles/livezilla_server_$LIVEZILLA_VERSION.zip"
 
 RUN apt-get update && apt-get --no-install-recommends install -y \
         unzip \
